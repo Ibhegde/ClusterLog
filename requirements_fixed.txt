@@ -1,0 +1,13 @@
+editdistance
+gensim
+kneed
+nltk
+numpy
+pandas
+pyonmttok
+scikit-learn
+matplotlib
+hdbscan
+python-rake
+pytextrank
+Jinja2

@@ -9,7 +9,6 @@ from .pipeline import Chain
 
 
 class Vector(Chain):
-
     def __init__(self, tokenized, w2v_size, w2v_window, cpu_number, model_name):
         self.word2vec = None
         self.tokenized = tokenized
@@ -24,12 +23,14 @@ class Vector(Chain):
         :param iterations:
         :param min_count: minimum frequency count of words (recommended value is 10)
         """
-        self.word2vec = Word2Vec(self.tokenized,
-                                 size=self.w2v_size,
-                                 window=self.w2v_window,
-                                 min_count=min_count,
-                                 workers=self.cpu_number,
-                                 iter=iterations)
+        self.word2vec = Word2Vec(
+            self.tokenized,
+            vector_size=self.w2v_size,
+            window=self.w2v_window,
+            min_count=min_count,
+            workers=self.cpu_number,
+            epochs=iterations,
+        )
 
         self.word2vec.save(self.model_name)
 
@@ -43,7 +44,12 @@ class Vector(Chain):
             self.create_word2vec_model()
 
         self.word2vec.build_vocab(self.tokenized, update=True)
-        self.word2vec.train(self.tokenized, total_examples=self.word2vec.corpus_count, epochs=30, report_delay=1)
+        self.word2vec.train(
+            self.tokenized,
+            total_examples=self.word2vec.corpus_count,
+            epochs=30,
+            report_delay=1,
+        )
         self.word2vec.save(self.model_name)
 
     def load_word2vec_model(self):
@@ -76,19 +82,39 @@ class Vector(Chain):
             max_idf = max(tfidf.idf_)
             word2weight = defaultdict(
                 lambda: max_idf,
-                [(w, tfidf.idf_[i]) for w, i in tfidf.vocabulary_.items()])
-            self.sent2vec = np.array([
-                np.mean([self.word2vec[w] * word2weight[w]
-                         for w in words if w in self.word2vec] or
-                        [np.zeros(self.w2v_size)], axis=0)
-                for words in self.tokenized
-            ])
+                [(w, tfidf.idf_[i]) for w, i in tfidf.vocabulary_.items()],
+            )
+            self.sent2vec = np.array(
+                [
+                    np.mean(
+                        [
+                            self.word2vec[w] * word2weight[w]
+                            for w in words
+                            if w in self.word2vec
+                        ]
+                        or [np.zeros(self.w2v_size)],
+                        axis=0,
+                    )
+                    for words in self.tokenized
+                ]
+            )
         else:
             for sent in self.tokenized:
                 # sent2vec.append(np.average(self.word2vec[sent],0))
-                sent_vec = np.average([self.word2vec[w] if w in self.word2vec else np.zeros((self.w2v_size,), dtype=np.float32)
-                                       for w in sent], 0)
-                sent2vec.append(np.zeros((self.w2v_size,), dtype=np.float32) if np.isnan(np.sum(sent_vec)) else sent_vec)
+                sent_vec = np.average(
+                    [
+                        self.word2vec.wv[w]
+                        if w in self.word2vec.wv
+                        else np.zeros((self.w2v_size,), dtype=np.float32)
+                        for w in sent
+                    ],
+                    0,
+                )
+                sent2vec.append(
+                    np.zeros((self.w2v_size,), dtype=np.float32)
+                    if np.isnan(np.sum(sent_vec))
+                    else sent_vec
+                )
             self.sent2vec = np.array(sent2vec)
 
     @staticmethod
@@ -98,7 +124,7 @@ class Vector(Chain):
         based on the length of vocabulary.
         Max embedding size = 300
         """
-        print('Vocabulary size = {}'.format(len(vocab)))
+        print("Vocabulary size = {}".format(len(vocab)))
         embedding_size = round(math.sqrt(len(vocab)))
         if embedding_size >= 300:
             embedding_size = 300
