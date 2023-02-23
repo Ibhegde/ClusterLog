@@ -9,12 +9,13 @@ from .utility import levenshtein_similarity_1_to_n
 
 
 class Match:
-    '''
+    """
     This class allows to extract the common pattern from a list of sequences.
     Create a new Match object for every pattern extraction task.
-    '''
+    """
+
     def __init__(self, match_threshhold=0.8, add_placeholder=False):
-        #self.sequences = sequences
+        # self.sequences = sequences
         self.match_threshhold = match_threshhold
         self.add_placeholder = add_placeholder
 
@@ -37,15 +38,17 @@ class Match:
                 # and change pattern to only contain those subsequences.
                 # In the end this gives us a common part of all the sequences.
                 match_ranges = matches.get_matching_blocks()[:-1]
-                matches = [x[m.a:m.a + m.size] for m in match_ranges]
-                if self.add_placeholder:  # Add a placeholder between matching subsequences
-                    [match + ['(.*?)'] for match in matches]
+                matches = [x[m.a : m.a + m.size] for m in match_ranges]
+                if (
+                    self.add_placeholder
+                ):  # Add a placeholder between matching subsequences
+                    [match + ["(.*?)"] for match in matches]
                     matches[-1].pop()
                 pattern = list(chain(*matches))  # concatenate inner lists
 
             if not pattern:
                 continue
-            junk = list(punctuation) + ['_', '(.*?)', '']
+            junk = list(punctuation) + ["_", "(.*?)", ""]
             # if at least one of the items in sequence is not junk - return True
             correct = any([token not in junk for token in pattern])
             return pattern if correct else x
@@ -58,15 +61,18 @@ class Match:
 
     def matcher(self, sequences):
         x = sequences[0]
+        correct = False
         for s in sequences:
             matches = difflib.SequenceMatcher(None, x, s)
             match_ranges = matches.get_matching_blocks()[:-1]
-            matches = [x[m.a:m.a + m.size] for m in match_ranges]
+            matches = [x[m.a : m.a + m.size] for m in match_ranges]
+            if len(matches) == 0:
+                continue
             if self.add_placeholder:
-                matches = [match + ['(.*?)'] for match in matches]
-                matches[-1].pop()
+                matches = [match + ["(.*?)"] for match in matches]
+                matches[-1:].pop()
             pattern = list(chain(*matches))  # concatenate inner lists
-            junk = list(punctuation) + ['_', '(.*?)', '']
+            junk = list(punctuation) + ["_", "(.*?)", ""]
             # if at least one of the items in sequence is not junk - return True
             correct = any([token not in junk for token in pattern])
         return pattern if correct else x
@@ -94,5 +100,7 @@ class Match:
             return sequences[0]
         else:
             x = list(map(list, zip(*sequences)))
-            return [tokens[0] if len(tokens) == 1 else '(.*?)' for tokens in
-                    [np.unique(line) for line in x]]
+            return [
+                tokens[0] if len(tokens) == 1 else "(.*?)"
+                for tokens in [np.unique(line) for line in x]
+            ]
