@@ -96,6 +96,7 @@ def tokenise_doc(
     log_text: str, stopwords_file: str = "analysis/intel_log_stopwords.csv"
 ) -> list[str]:
     # Tokenize the text to get words with '.','-', and ':'
+    # New addition capture newline
     tk = RegexpTokenizer(r"([\w\-\.:\n]+)")
     tokens = tk.tokenize(log_text)
 
