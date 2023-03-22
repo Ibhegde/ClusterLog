@@ -1,0 +1,331 @@
+<html>
+
+
+<head>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <style>
+        table {
+          font-size: 12px;
+        }
+        .container {
+            width: 65%;
+            margin-top: 55px;
+        }
+    </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>ClusterLogs Report</title>
+  </head>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-12">
+
+        <h3>ClusterLogs Report (Categorized)</h3>
+        
+        <table class="table table-sm table-condensed table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Cluster Size</th>
+                <th>Patterns</th>
+                <th>Key Phrases</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>36505</td>
+                    <td>
+                        <ul>
+                            
+                            <li>dma read request device fault addr fault reason next page table ptr invalid(.*?)</li>
+                            
+                            <li>panic fatal exception interrupt(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?)</li>
+                            
+                            <li>panic attempted kill exitcode(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) flip_done timed out(.*?)</li>
+                            
+                            <li>flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?)</li>
+                            
+                            <li>flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?)</li>
+                            
+                            <li>export xdg_runtime_dir run waylandroot (.*?) (.*?) flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>flip_done timed out(.*?)</li>
+                            
+                            <li>(.*?) (.*?) (.*?) (.*?)</li>
+                            
+                            <li>(.*?)</li>
+                            
+                            <li>(.*?) (.*?)</li>
+                            
+                            <li>drm gpu ecode hang vcs0 (.*?)</li>
+                            
+                            <li>job running flip_done timed out(.*?)</li>
+                            
+                            <li>dma read request device fault addr(.*?)</li>
+                            
+                            <li>general protection preempt smp nopti(.*?)</li>
+                            
+                            <li>sys devices dmesg grep rcs05 frames fps(.*?)</li>
+                            
+                            <li>buffer dev logical block async page (.*?)</li>
+                            
+                            <li>dma read request device fault addr fault reason pte read access(.*?)</li>
+                            
+                            <li>rcs0 number context specific(.*?)</li>
+                            
+                            <li>black scr flip_done timed out(.*?)</li>
+                            
+                            <li>end panic attempted kill the idle task(.*?)</li>
+                            
+                            <li>hardware machine bank(.*?)</li>
+                            
+                            <li>flip_done timed out(.*?)</li>
+                            
+                            <li>first frame displayed intel-ipu4-isys csi2-0 received fatal(.*?)</li>
+                            
+                            <li>panic gpu hang detected(.*?)</li>
+                            
+                            <li>drm request timeout(.*?)</li>
+                            
+                            <li>drm gpu ecode weston hang rcs0(.*?)</li>
+                            
+                            <li>end panic machine(.*?)</li>
+                            
+                            <li>job running for_video application job running for_video application job running for_video application job running job running flip_done timed out(.*?)</li>
+                            
+                            <li>job running job running job running job running job running for_video application job running for_video application flip_done timed out(.*?)</li>
+                            
+                            <li>job running for_video application(.*?)</li>
+                            
+                            <li>gr-mrb-64 roo general protection preempt smp nopti(.*?)</li>
+                            
+                            <li>deline flip_done timed out(.*?)</li>
+                            
+                            <li>dme grep flip_done timed out(.*?)</li>
+                            
+                            <li>can tmp flip_done timed out(.*?)</li>
+                            
+                            <li>i915 resetting rcs0 hang rcs0(.*?)</li>
+                            
+                            <li>device ipu4 broxton video capture without mplanes dev intel-ipu4-isys csi2-0 received fatal</li>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            
+                            <li>job running flip_done timed</li>
+                            
+                            <li>dme grep flip_done timed</li>
+                            
+                            <li>black scr flip_done timed</li>
+                            
+                            <li>tmp flip_done timed</li>
+                            
+                            <li>deline flip_done timed</li>
+                            
+                            <li>flip_done timed</li>
+                            
+                            <li>flip_done timed</li>
+                            
+                            <li>flip_done timed</li>
+                            
+                            <li>flip_done timed</li>
+                            
+                            <li>flip_done timed</li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            
+            </tbody>
+        </table>
+            
+        <table class="table table-sm table-condensed table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Cluster Size</th>
+                <th>Patterns</th>
+                <th>Key Phrases</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>97</td>
+                    <td>
+                        <ul>
+                            
+                            <li>intel-ipu4-isys csi2-0 fifo overflow(.*?)</li>
+                            
+                            <li>rcs0 pipe control(.*?)</li>
+                            
+                            <li>pipe fifo underrun(.*?)</li>
+                            
+                            <li>rcs0 pipe control offset</li>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            
+                            <li>pipe control offset</li>
+                            
+                            <li>pipe fifo</li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            
+            </tbody>
+        </table>
+            
+        <table class="table table-sm table-condensed table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Cluster Size</th>
+                <th>Patterns</th>
+                <th>Key Phrases</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>40</td>
+                    <td>
+                        <ul>
+                            
+                            <li>execlists enabled rcs0</li>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            
+                            <li>execlists enabled</li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            
+            </tbody>
+        </table>
+            
+        <table class="table table-sm table-condensed table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Cluster Size</th>
+                <th>Patterns</th>
+                <th>Key Phrases</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>14</td>
+                    <td>
+                        <ul>
+                            
+                            <li>drm rcs0 ack</li>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            
+                            <li>drm ack</li>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            
+            </tbody>
+        </table>
+            
+        <table class="table table-sm table-condensed table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th>Cluster Size</th>
+                <th>Patterns</th>
+                <th>Key Phrases</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <ul>
+                            
+                            <li>setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting testing setting hardware machine check bank</li>
+                            
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            
+                        </ul>
+                    </td>
+                </tr>
+            
+            </tbody>
+        </table>
+            
+            </div>
+    </div>
+
+</div>
+
+</body>
+</html>

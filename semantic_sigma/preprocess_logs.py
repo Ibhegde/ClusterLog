@@ -97,7 +97,7 @@ def tokenise_doc(
 ) -> list[str]:
     # Tokenize the text to get words with '.','-', and ':'
     # New addition capture newline
-    tk = RegexpTokenizer(r"([\w\-\.:\n]+)")
+    tk = RegexpTokenizer(r"([\w\-\.:]+)")
     tokens = tk.tokenize(log_text)
 
     # Apply stop words
@@ -121,7 +121,7 @@ def tokenise_doc(
     tokens = [
         word
         for word in tokens
-        if len(word) <= 32
+        if 3 <= len(word) <= 32
         and log_stopwords_reg.match(word) is None
         and log_stopwords_full.fullmatch(word) is None
         and word not in stopwords
@@ -193,7 +193,7 @@ def load_data(logs_dir: str, max_rec: int = None):
                     }
                 ]
             )
-            docs = pd.concat([docs, log_entry])
+            docs = pd.concat([docs, log_entry], ignore_index=True)
             if max_rec is not None:
                 max_rec = max_rec - 1
     return docs
